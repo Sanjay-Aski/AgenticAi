@@ -18,9 +18,10 @@ if "agent" not in st.session_state:
     st.session_state.logger = logger
 
 question = st.text_input("Ask your question (example: farmer scheme)")
+level = st.selectbox("Choose learning level", ["Beginner", "Intermediate", "Advanced"], index=0)
 
 if st.button("Submit", type="primary"):
-    response = st.session_state.agent.answer(TutorRequest(question=question))
+    response = st.session_state.agent.answer(TutorRequest(question=question, level=level))
     st.subheader("Response")
     st.write(response.response_text)
 
@@ -28,7 +29,9 @@ if st.button("Submit", type="primary"):
         st.write(
             {
                 "intent": response.intent,
+                "learning_intent": response.learning_intent,
                 "version": response.version,
+                "applied_prompt": response.applied_prompt,
                 "guardrail_triggered": response.guardrail_triggered,
                 "response_time_ms": response.response_time_ms,
             }

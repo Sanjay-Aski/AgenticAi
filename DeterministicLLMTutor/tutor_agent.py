@@ -18,18 +18,22 @@ from config import (
     MAX_INPUT_LENGTH,
 )
 from logger import InteractionLogger
+from prompts import INTENT_PROMPTS, LEVEL_GUIDANCE, SYSTEM_PROMPT
 
 
 @dataclass(frozen=True)
 class TutorRequest:
     question: str
+    level: str = "Beginner"
 
 
 @dataclass(frozen=True)
 class TutorResponse:
     intent: str
+    learning_intent: str
     version: str
     response_text: str
+    applied_prompt: str
     guardrail_triggered: bool
     response_time_ms: float
 
@@ -79,13 +83,21 @@ class DeterministicTutorAgent:
         ]
         return any(pattern in normalized_text for pattern in blocked_patterns)
 
+    @classmethod
+    def _contains_keyword(cls, normalized_text: str, keyword: str) -> bool:
+        kw = cls.normalize(keyword)
+        if not kw:
+            return False
+        pattern = rf"(^|\s){re.escape(kw)}(\s|$)"
+        return re.search(pattern, normalized_text) is not None
+
     def _detect_intent(self, normalized_text: str) -> Tuple[str, str, str]:
         best_score = 0
         best_topic = None
 
         for topic in self._topics:
             keywords: List[str] = topic.get("keywords", [])
-            score = sum(1 for kw in keywords if kw in normalized_text)
+            score = sum(1 for kw in keywords if self._contains_keyword(normalized_text, kw))
             if score > best_score:
                 best_score = score
                 best_topic = topic
@@ -99,11 +111,55 @@ class DeterministicTutorAgent:
 
         return ("unknown", "v1", self._fallback)
 
+    @staticmethod
+    def _detect_learning_intent(normalized_text: str) -> str:
+        intent_rules = [
+            ("comparison", ["compare", "difference", "vs", "versus"]),
+            ("complexity_analysis", ["complexity", "big o", "time complexity", "space complexity"]),
+            ("algorithm", ["algorithm", "steps", "procedure", "how to"]),
+            ("example", ["example", "sample"]),
+            ("code_generation", ["code", "program", "implement", "python", "java", "c++"]),
+            ("debugging", ["debug", "error", "bug", "fix", "traceback"]),
+            ("definition", ["define", "what is", "meaning"]),
+        ]
+
+        for label, keywords in intent_rules:
+            if any(k in normalized_text for k in keywords):
+                return label
+        return "definition"
+
+    def _format_by_level(self, base_response: str, level: str, learning_intent: str) -> str:
+        safe_level = level if level in LEVEL_GUIDANCE else "Beginner"
+
+        if "not present in the dataset" in base_response.lower() or base_response == GUARDRAIL_RESPONSE:
+            return base_response
+
+        if safe_level == "Beginner":
+            return f"Topic: {learning_intent}\nAnswer: {base_response}"
+
+        if safe_level == "Intermediate":
+            return (
+                f"Topic: {learning_intent}\n"
+                f"Answer: {base_response}\n"
+                "Summary: Use this scheme according to your need and eligibility."
+            )
+
+        return (
+            f"Topic: {learning_intent}\n"
+            f"Answer: {base_response}\n"
+            "Summary: Verify eligibility, benefit cadence, and official enrollment channel before applying."
+        )
+
     def answer(self, req: TutorRequest) -> TutorResponse:
         start = time.perf_counter()
         raw_question = (req.question or "").strip()
         safe_question = raw_question[:MAX_INPUT_LENGTH]
         normalized = self.normalize(safe_question)
+        learning_intent = self._detect_learning_intent(normalized) if normalized else "unknown"
+        applied_prompt = (
+            f"{SYSTEM_PROMPT} | IntentRule: {INTENT_PROMPTS.get(learning_intent, INTENT_PROMPTS['unknown'])} "
+            f"| LevelRule: {LEVEL_GUIDANCE.get(req.level, LEVEL_GUIDANCE['Beginner'])}"
+        )
 
         guardrail_triggered = ENABLE_GUARDRAILS and self._guardrail_check(normalized)
         if guardrail_triggered:
@@ -112,6 +168,8 @@ class DeterministicTutorAgent:
             intent, version, response_text = "empty", "v1", self._fallback
         else:
             intent, version, response_text = self._detect_intent(normalized)
+
+        response_text = self._format_by_level(response_text, req.level, learning_intent)
 
         elapsed_ms = round((time.perf_counter() - start) * 1000, 3)
 
@@ -122,6 +180,8 @@ class DeterministicTutorAgent:
             "input_hash": self._input_hash(normalized),
             "detected_intent": intent,
             "response_version": version,
+            "learning_intent": learning_intent,
+            "learner_level": req.level,
             "response_text": response_text,
             "response_time_ms": elapsed_ms,
             "guardrail_triggered": guardrail_triggered,
@@ -130,8 +190,10 @@ class DeterministicTutorAgent:
 
         return TutorResponse(
             intent=intent,
+            learning_intent=learning_intent,
             version=version,
             response_text=response_text,
+            applied_prompt=applied_prompt,
             guardrail_triggered=guardrail_triggered,
             response_time_ms=elapsed_ms,
         )

@@ -27,6 +27,8 @@ class InteractionLogger:
                     input_hash TEXT NOT NULL,
                     detected_intent TEXT NOT NULL,
                     response_version TEXT NOT NULL,
+                    learning_intent TEXT NOT NULL DEFAULT 'unknown',
+                    learner_level TEXT NOT NULL DEFAULT 'Beginner',
                     response_text TEXT NOT NULL,
                     response_time_ms REAL NOT NULL,
                     guardrail_triggered INTEGER NOT NULL
@@ -42,6 +44,23 @@ class InteractionLogger:
                     PRIMARY KEY (intent, version)
                 )
                 """
+            )
+            self._ensure_interaction_columns(conn)
+
+    @staticmethod
+    def _ensure_interaction_columns(conn: sqlite3.Connection) -> None:
+        existing = {
+            row[1]
+            for row in conn.execute("PRAGMA table_info(interactions)").fetchall()
+        }
+
+        if "learning_intent" not in existing:
+            conn.execute(
+                "ALTER TABLE interactions ADD COLUMN learning_intent TEXT NOT NULL DEFAULT 'unknown'"
+            )
+        if "learner_level" not in existing:
+            conn.execute(
+                "ALTER TABLE interactions ADD COLUMN learner_level TEXT NOT NULL DEFAULT 'Beginner'"
             )
 
     def upsert_response_version(self, intent: str, version: str, response_text: str) -> None:
@@ -66,10 +85,12 @@ class InteractionLogger:
                     input_hash,
                     detected_intent,
                     response_version,
+                    learning_intent,
+                    learner_level,
                     response_text,
                     response_time_ms,
                     guardrail_triggered
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     payload["timestamp_utc"],
@@ -78,6 +99,8 @@ class InteractionLogger:
                     payload["input_hash"],
                     payload["detected_intent"],
                     payload["response_version"],
+                    payload.get("learning_intent", "unknown"),
+                    payload.get("learner_level", "Beginner"),
                     payload["response_text"],
                     payload["response_time_ms"],
                     int(payload["guardrail_triggered"]),
@@ -88,7 +111,7 @@ class InteractionLogger:
         with self._connect() as conn:
             rows = conn.execute(
                 """
-                SELECT timestamp_utc, question, detected_intent, response_text, response_time_ms, guardrail_triggered
+                SELECT timestamp_utc, question, detected_intent, learning_intent, learner_level, response_text, response_time_ms, guardrail_triggered
                 FROM interactions
                 ORDER BY id DESC
                 LIMIT ?
@@ -101,9 +124,11 @@ class InteractionLogger:
                 "timestamp_utc": r[0],
                 "question": r[1],
                 "detected_intent": r[2],
-                "response_text": r[3],
-                "response_time_ms": r[4],
-                "guardrail_triggered": bool(r[5]),
+                "learning_intent": r[3],
+                "learner_level": r[4],
+                "response_text": r[5],
+                "response_time_ms": r[6],
+                "guardrail_triggered": bool(r[7]),
             }
             for r in rows
         ]
