@@ -1,49 +1,1191 @@
 {
   "dataset_name": "GovSchemesTutor",
-  "dataset_version": "1.0.0",
+  "dataset_version": "2.0.0",
   "default_response": "Sorry, this is not present in the dataset.",
+  "matching_rule": "Match the user query against keywords. If multiple topics match, select the topic with the highest priority. If no relevant topic matches, return default_response.",
   "topics": [
     {
       "intent": "farmer_general",
       "version": "v1",
       "priority": 1,
-      "keywords": ["farmer", "kisan", "agriculture", "krishi"],
+      "keywords": ["farmer", "farmers", "kisan", "agriculture", "agricultural", "krishi", "farming", "cultivation"],
       "response": "For farmers, key schemes include PM-KISAN (income support), KCC (credit), and PMFBY (crop insurance)."
     },
     {
       "intent": "pm_kisan",
       "version": "v1",
       "priority": 2,
-      "keywords": ["pm kisan", "pm-kisan", "income support", "6000"],
+      "keywords": ["pm kisan", "pm-kisan", "pmkisan", "income support", "6000", "farmer 6000", "kisan samman nidhi", "pradhan mantri kisan samman nidhi"],
       "response": "PM-KISAN: Eligible farmer families receive Rs. 6000 per year in 3 equal installments."
     },
     {
       "intent": "kisan_credit_card",
       "version": "v1",
       "priority": 3,
-      "keywords": ["kcc", "kisan credit card", "farm loan", "agri credit"],
+      "keywords": ["kcc", "kisan credit card", "farm loan", "agri credit", "farmer credit", "crop loan", "agriculture loan"],
       "response": "Kisan Credit Card (KCC): Provides timely short-term credit for crop cultivation and allied activities."
     },
     {
       "intent": "crop_insurance",
       "version": "v1",
       "priority": 4,
-      "keywords": ["pmfby", "crop insurance", "insurance", "fasal bima"],
+      "keywords": ["pmfby", "pm fby", "crop insurance", "insurance", "fasal bima", "pradhan mantri fasal bima", "crop loss insurance"],
       "response": "PMFBY: Crop insurance scheme that protects farmers against crop loss due to natural risks."
     },
     {
       "intent": "soil_health",
       "version": "v1",
       "priority": 5,
-      "keywords": ["soil", "soil health card", "nutrient"],
+      "keywords": ["soil", "soil health", "soil health card", "nutrient", "soil testing", "soil nutrients", "fertility"],
       "response": "Soil Health Card Scheme: Provides soil nutrient status and recommendations for better productivity."
     },
     {
       "intent": "irrigation",
       "version": "v1",
       "priority": 6,
-      "keywords": ["irrigation", "water", "pmksy", "per drop more crop"],
+      "keywords": ["irrigation", "water", "pmksy", "pm ksy", "per drop more crop", "micro irrigation", "drip irrigation", "sprinkler"],
       "response": "PMKSY: Supports irrigation expansion and efficient water use under 'Per Drop More Crop'."
+    },
+    {
+      "intent": "agriculture_infrastructure_fund",
+      "version": "v1",
+      "priority": 7,
+      "keywords": ["agriculture infrastructure fund", "aif", "agri infrastructure", "farm infrastructure", "agriculture infrastructure"],
+      "response": "Agriculture Infrastructure Fund (AIF): Supports financing for post-harvest management infrastructure and community farming assets."
+    },
+    {
+      "intent": "paramparagat_krishi_vikas_yojana",
+      "version": "v1",
+      "priority": 8,
+      "keywords": ["pkvy", "paramparagat krishi vikas yojana", "organic farming", "organic agriculture", "natural farming"],
+      "response": "Paramparagat Krishi Vikas Yojana (PKVY): Promotes organic farming and sustainable agricultural practices."
+    },
+    {
+      "intent": "rashtriya_krishi_vikas_yojana",
+      "version": "v1",
+      "priority": 9,
+      "keywords": ["rkvy", "rashtriya krishi vikas yojana", "agriculture development", "farm development"],
+      "response": "Rashtriya Krishi Vikas Yojana (RKVY): Supports states in developing agriculture and allied sectors."
+    },
+    {
+      "intent": "e_nam",
+      "version": "v1",
+      "priority": 10,
+      "keywords": ["e nam", "enam", "e-nam", "national agriculture market", "online mandi", "agriculture market", "farmers market"],
+      "response": "e-NAM is an online agricultural market platform designed to improve transparency and market access for farmers."
+    },
+    {
+      "intent": "pm_kusum",
+      "version": "v1",
+      "priority": 11,
+      "keywords": ["pm kusum", "pm-kusum", "kusum", "solar pump", "solar pumps", "farmer solar", "solar agriculture"],
+      "response": "PM-KUSUM promotes solar energy for agriculture, including solar pumps and decentralized renewable power."
+    },
+    {
+      "intent": "national_food_security_mission",
+      "version": "v1",
+      "priority": 12,
+      "keywords": ["nfsm", "national food security mission", "food security", "rice production", "wheat production", "pulse production"],
+      "response": "National Food Security Mission (NFSM): Supports increased production of major food crops through improved agricultural practices and technologies."
+    },
+    {
+      "intent": "horticulture_mission",
+      "version": "v1",
+      "priority": 13,
+      "keywords": ["horticulture", "midh", "mission for integrated development of horticulture", "fruit farming", "vegetable farming", "flower farming"],
+      "response": "Mission for Integrated Development of Horticulture (MIDH): Supports horticultural crops including fruits, vegetables, flowers, spices and plantation crops."
+    },
+    {
+      "intent": "fisheries_scheme",
+      "version": "v1",
+      "priority": 14,
+      "keywords": ["fisheries", "fish farming", "fisherman", "fishermen", "pmmsy", "pradhan mantri matsya sampada yojana"],
+      "response": "Pradhan Mantri Matsya Sampada Yojana (PMMSY): Supports fisheries development, infrastructure, productivity and livelihoods."
+    },
+    {
+      "intent": "animal_husbandry",
+      "version": "v1",
+      "priority": 15,
+      "keywords": ["animal husbandry", "cattle", "livestock", "dairy", "cow", "buffalo", "goat farming", "animal farming"],
+      "response": "Government animal husbandry programs support livestock health, productivity, dairy development and farmer livelihoods."
+    },
+    {
+      "intent": "rural_general",
+      "version": "v1",
+      "priority": 20,
+      "keywords": ["rural", "village", "rural development", "gram", "gaon", "village development"],
+      "response": "Major rural development programs include MGNREGA, PMAY-G, PMGSY, DAY-NRLM and other livelihood and infrastructure schemes."
+    },
+    {
+      "intent": "mgnrega",
+      "version": "v1",
+      "priority": 21,
+      "keywords": ["mgnrega", "mnrega", "nrega", "100 days work", "rural employment", "rural job", "employment guarantee", "job card"],
+      "response": "MGNREGA provides a legal guarantee of wage employment to rural households, subject to the scheme's eligibility and conditions."
+    },
+    {
+      "intent": "pmay_g",
+      "version": "v1",
+      "priority": 22,
+      "keywords": ["pmay g", "pmay-g", "pmay gramin", "rural housing", "housing rural", "pradhan mantri awas yojana gramin", "house village"],
+      "response": "PMAY-G supports eligible rural households in obtaining pucca houses with basic amenities."
+    },
+    {
+      "intent": "pmay_urban",
+      "version": "v1",
+      "priority": 23,
+      "keywords": ["pmay urban", "pmay-u", "pmay u", "urban housing", "city housing", "house city", "pradhan mantri awas yojana urban"],
+      "response": "PMAY-Urban supports affordable housing for eligible urban households through various housing assistance components."
+    },
+    {
+      "intent": "pmay_general",
+      "version": "v1",
+      "priority": 24,
+      "keywords": ["pmay", "pradhan mantri awas yojana", "awas yojana", "housing scheme", "government house"],
+      "response": "Pradhan Mantri Awas Yojana supports affordable housing for eligible households in rural and urban areas."
+    },
+    {
+      "intent": "pmgsy",
+      "version": "v1",
+      "priority": 25,
+      "keywords": ["pmgsy", "pm gsy", "pradhan mantri gram sadak yojana", "village roads", "rural roads", "gram sadak"],
+      "response": "PMGSY focuses on providing all-weather road connectivity to eligible rural habitations."
+    },
+    {
+      "intent": "day_nrlm",
+      "version": "v1",
+      "priority": 26,
+      "keywords": ["day nrlm", "nrlm", "national rural livelihood mission", "self help group", "shg", "rural women group", "livelihood mission"],
+      "response": "DAY-NRLM promotes rural livelihoods through Self Help Groups, financial inclusion, skills and income-generating activities."
+    },
+    {
+      "intent": "deendayal_antyodaya",
+      "version": "v1",
+      "priority": 27,
+      "keywords": ["deendayal antyodaya", "antyodaya", "livelihood", "poor households", "urban livelihood"],
+      "response": "Deendayal Antyodaya Yojana supports livelihoods and poverty reduction through rural and urban livelihood programs."
+    },
+    {
+      "intent": "pm_jan_dhan",
+      "version": "v1",
+      "priority": 30,
+      "keywords": ["pm jan dhan", "pmjdy", "jan dhan", "bank account", "zero balance account", "financial inclusion", "basic bank account"],
+      "response": "Pradhan Mantri Jan-Dhan Yojana promotes financial inclusion by helping eligible people access basic banking, savings, remittance, credit, insurance and pension services."
+    },
+    {
+      "intent": "mudra",
+      "version": "v1",
+      "priority": 31,
+      "keywords": ["mudra", "pmmy", "mudra loan", "small business loan", "micro business loan", "shishu", "kishor", "tarun"],
+      "response": "Pradhan Mantri MUDRA Yojana provides institutional credit support to micro and small businesses and entrepreneurs."
+    },
+    {
+      "intent": "stand_up_india",
+      "version": "v1",
+      "priority": 32,
+      "keywords": ["stand up india", "stand-up india", "sc entrepreneur", "st entrepreneur", "women entrepreneur loan", "standup india"],
+      "response": "Stand-Up India facilitates bank loans for eligible SC/ST and women entrepreneurs for setting up greenfield enterprises."
+    },
+    {
+      "intent": "startup_india",
+      "version": "v1",
+      "priority": 33,
+      "keywords": ["startup india", "startup", "startup scheme", "new company", "entrepreneurship", "dpiit startup"],
+      "response": "Startup India supports entrepreneurship through recognition, ecosystem support, funding-related initiatives, tax-related provisions and other startup facilitation measures."
+    },
+    {
+      "intent": "msme",
+      "version": "v1",
+      "priority": 34,
+      "keywords": ["msme", "small business", "medium enterprise", "micro enterprise", "msme scheme", "small enterprise"],
+      "response": "Government MSME programs provide support related to finance, technology, skills, market access, infrastructure and entrepreneurship."
+    },
+    {
+      "intent": "pm_vishwakarma",
+      "version": "v1",
+      "priority": 35,
+      "keywords": ["pm vishwakarma", "pm-vishwakarma", "vishwakarma", "artisan", "craftsman", "traditional artisan", "traditional crafts"],
+      "response": "PM Vishwakarma supports traditional artisans and craftspeople through recognition, skill training, toolkit support, credit and market-related assistance."
+    },
+    {
+      "intent": "pm_svanidhi",
+      "version": "v1",
+      "priority": 36,
+      "keywords": ["pm svanidhi", "pmsvanidhi", "street vendor", "street vendors", "thela", "hawker", "small vendor loan"],
+      "response": "PM SVANidhi provides working-capital support and related incentives to eligible street vendors."
+    },
+    {
+      "intent": "credit_guarantee",
+      "version": "v1",
+      "priority": 37,
+      "keywords": ["credit guarantee", "cgtmse", "collateral free loan", "without collateral", "business guarantee", "loan guarantee"],
+      "response": "Credit guarantee programs help eligible micro and small enterprises access institutional credit with reduced collateral requirements."
+    },
+    {
+      "intent": "skill_india",
+      "version": "v1",
+      "priority": 40,
+      "keywords": ["skill india", "skill development", "vocational training", "job training", "skill training", "skills"],
+      "response": "Skill India initiatives promote vocational training, employability and industry-relevant skills."
+    },
+    {
+      "intent": "pmkvy",
+      "version": "v1",
+      "priority": 41,
+      "keywords": ["pmkvy", "pmkvy scheme", "pradhan mantri kaushal vikas yojana", "kaushal vikas", "free skill training"],
+      "response": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY) supports skill development and certification for eligible candidates."
+    },
+    {
+      "intent": "apprenticeship",
+      "version": "v1",
+      "priority": 42,
+      "keywords": ["apprenticeship", "apprentice", "naps", "national apprenticeship promotion", "apprenticeship training", "learn while work"],
+      "response": "Government apprenticeship programs support practical workplace training and help candidates develop industry-relevant skills."
+    },
+    {
+      "intent": "employment_general",
+      "version": "v1",
+      "priority": 43,
+      "keywords": ["employment", "job scheme", "jobs", "employment scheme", "job support", "work scheme"],
+      "response": "Government employment initiatives include skill development, apprenticeships, rural employment and entrepreneurship programs."
+    },
+    {
+      "intent": "education_general",
+      "version": "v1",
+      "priority": 50,
+      "keywords": ["education", "student", "students", "school", "college", "study", "education scheme"],
+      "response": "Government education initiatives provide support through scholarships, school education, higher education, skill development and digital learning programs."
+    },
+    {
+      "intent": "scholarship_general",
+      "version": "v1",
+      "priority": 51,
+      "keywords": ["scholarship", "scholarships", "student scholarship", "education scholarship", "financial aid student", "student financial assistance"],
+      "response": "Government scholarships support eligible students from different social and economic backgrounds for school, college and higher education."
+    },
+    {
+      "intent": "national_scholarship_portal",
+      "version": "v1",
+      "priority": 52,
+      "keywords": ["nsp", "national scholarship portal", "scholarship portal", "online scholarship", "scholarship application"],
+      "response": "The National Scholarship Portal (NSP) provides an online platform for various government scholarship applications and related services."
+    },
+    {
+      "intent": "mid_day_meal",
+      "version": "v1",
+      "priority": 53,
+      "keywords": ["mid day meal", "midday meal", "school meal", "pm poshan", "poshan school", "school children food"],
+      "response": "PM POSHAN supports nutritional meals for eligible children in government and government-aided schools."
+    },
+    {
+      "intent": "samagra_shiksha",
+      "version": "v1",
+      "priority": 54,
+      "keywords": ["samagra shiksha", "school education mission", "school development", "school education scheme"],
+      "response": "Samagra Shiksha supports school education from pre-school through senior secondary levels, including access, quality and equity."
+    },
+    {
+      "intent": "digital_education",
+      "version": "v1",
+      "priority": 55,
+      "keywords": ["digital education", "online education", "digital learning", "online classes", "e learning", "diksha"],
+      "response": "Government digital education initiatives support online learning, digital content, teacher resources and technology-enabled education."
+    },
+    {
+      "intent": "health_general",
+      "version": "v1",
+      "priority": 60,
+      "keywords": ["health", "healthcare", "medical", "hospital", "treatment", "health scheme", "medical scheme"],
+      "response": "Major government health initiatives include Ayushman Bharat, health insurance and financial protection programs, primary healthcare and public health services."
+    },
+    {
+      "intent": "ayushman_bharat",
+      "version": "v1",
+      "priority": 61,
+      "keywords": ["ayushman bharat", "pmjay", "pm jay", "ayushman card", "health card", "5 lakh health", "hospital insurance"],
+      "response": "Ayushman Bharat PM-JAY provides health coverage to eligible beneficiaries for specified secondary and tertiary hospitalization expenses."
+    },
+    {
+      "intent": "health_id_abha",
+      "version": "v1",
+      "priority": 62,
+      "keywords": ["abha", "abha card", "health id", "health id card", "digital health id", "ayushman bharat health account"],
+      "response": "ABHA provides a digital health identity that can help individuals access and manage health records through participating digital health services."
+    },
+    {
+      "intent": "jan_aushadhi",
+      "version": "v1",
+      "priority": 63,
+      "keywords": ["jan aushadhi", "pm jan aushadhi", "generic medicine", "cheap medicines", "affordable medicine", "janaushadhi"],
+      "response": "Pradhan Mantri Bhartiya Janaushadhi Pariyojana promotes access to quality generic medicines at affordable prices through Janaushadhi Kendras."
+    },
+    {
+      "intent": "national_health_mission",
+      "version": "v1",
+      "priority": 64,
+      "keywords": ["nhm", "national health mission", "public health", "primary healthcare", "health mission"],
+      "response": "The National Health Mission supports accessible and affordable public healthcare services, especially for vulnerable and rural populations."
+    },
+    {
+      "intent": "maternal_health",
+      "version": "v1",
+      "priority": 65,
+      "keywords": ["pregnancy scheme", "pregnant women", "maternal health", "maternity", "safe delivery", "mother health"],
+      "response": "Government maternal health programs support pregnant women through antenatal care, institutional delivery, nutrition and maternal healthcare services."
+    },
+    {
+      "intent": "janani_suraksha",
+      "version": "v1",
+      "priority": 66,
+      "keywords": ["janani suraksha yojana", "jsy", "institutional delivery", "delivery assistance", "pregnant woman assistance"],
+      "response": "Janani Suraksha Yojana promotes institutional deliveries among eligible pregnant women through cash assistance and related support."
+    },
+    {
+      "intent": "women_general",
+      "version": "v1",
+      "priority": 70,
+      "keywords": ["women", "woman", "women scheme", "girl", "female", "women welfare"],
+      "response": "Government programs for women include financial inclusion, entrepreneurship, safety, health, education, maternity support and social welfare initiatives."
+    },
+    {
+      "intent": "beti_bachao_beti_padhao",
+      "version": "v1",
+      "priority": 71,
+      "keywords": ["beti bachao beti padhao", "bbbp", "save girl child", "girl child education", "girl child"],
+      "response": "Beti Bachao Beti Padhao focuses on improving the value, protection, education and empowerment of the girl child."
+    },
+    {
+      "intent": "sukanya_samriddhi",
+      "version": "v1",
+      "priority": 72,
+      "keywords": ["sukanya samriddhi", "sukanya", "girl child savings", "ssy", "daughter savings", "girl savings account"],
+      "response": "Sukanya Samriddhi Account is a government-backed small savings scheme designed for the financial future of eligible girl children."
+    },
+    {
+      "intent": "ujjwala",
+      "version": "v1",
+      "priority": 73,
+      "keywords": ["ujjwala", "pm ujjwala", "lpg connection", "gas connection", "free gas", "women lpg"],
+      "response": "Pradhan Mantri Ujjwala Yojana supports eligible households, particularly women from deprived households, in accessing LPG connections."
+    },
+    {
+      "intent": "mudra_women",
+      "version": "v1",
+      "priority": 74,
+      "keywords": ["women business loan", "women mudra", "female entrepreneur loan", "women entrepreneurship loan"],
+      "response": "Women entrepreneurs can access various government-supported credit and entrepreneurship programs, including eligible MUDRA and other enterprise schemes."
+    },
+    {
+      "intent": "stand_up_women",
+      "version": "v1",
+      "priority": 75,
+      "keywords": ["women entrepreneur", "women startup loan", "women business", "woman entrepreneur"],
+      "response": "Stand-Up India and other entrepreneurship initiatives support eligible women entrepreneurs in establishing and expanding enterprises."
+    },
+    {
+      "intent": "widow_pension",
+      "version": "v1",
+      "priority": 76,
+      "keywords": ["widow pension", "widow scheme", "widow assistance", "widow financial support"],
+      "response": "Government social security programs provide financial assistance to eligible widows, subject to applicable eligibility conditions."
+    },
+    {
+      "intent": "old_age_pension",
+      "version": "v1",
+      "priority": 77,
+      "keywords": ["old age pension", "senior citizen pension", "elderly pension", "vridha pension", "old people pension"],
+      "response": "Government social security programs provide pension assistance to eligible elderly persons subject to applicable criteria."
+    },
+    {
+      "intent": "disability_pension",
+      "version": "v1",
+      "priority": 78,
+      "keywords": ["disability pension", "disabled pension", "divyang pension", "disability assistance", "disabled person scheme"],
+      "response": "Government social security programs provide assistance to eligible persons with disabilities subject to applicable eligibility criteria."
+    },
+    {
+      "intent": "social_security_general",
+      "version": "v1",
+      "priority": 79,
+      "keywords": ["social security", "pension", "financial assistance", "social welfare", "welfare scheme"],
+      "response": "Government social security programs provide support for eligible elderly persons, widows, persons with disabilities and other vulnerable groups."
+    },
+    {
+      "intent": "pmjjby",
+      "version": "v1",
+      "priority": 80,
+      "keywords": ["pmjjby", "pm j j b y", "jeevan jyoti", "life insurance scheme", "government life insurance", "life insurance"],
+      "response": "Pradhan Mantri Jeevan Jyoti Bima Yojana is a government-backed life insurance scheme available to eligible bank account holders subject to its terms."
+    },
+    {
+      "intent": "pmsby",
+      "version": "v1",
+      "priority": 81,
+      "keywords": ["pmsby", "pm sby", "suraksha bima", "accident insurance", "government accident insurance", "personal accident"],
+      "response": "Pradhan Mantri Suraksha Bima Yojana is an accident insurance scheme available to eligible individuals subject to its terms."
+    },
+    {
+      "intent": "atal_pension_yojana",
+      "version": "v1",
+      "priority": 82,
+      "keywords": ["atal pension", "apy", "atal pension yojana", "retirement pension", "pension scheme", "government pension"],
+      "response": "Atal Pension Yojana is a government-backed pension scheme designed primarily to encourage retirement savings among eligible subscribers."
+    },
+    {
+      "intent": "national_pension_system",
+      "version": "v1",
+      "priority": 83,
+      "keywords": ["nps", "national pension system", "retirement savings", "pension account", "retirement pension"],
+      "response": "The National Pension System (NPS) is a regulated retirement savings system that allows eligible subscribers to build a retirement corpus."
+    },
+    {
+      "intent": "financial_inclusion",
+      "version": "v1",
+      "priority": 84,
+      "keywords": ["financial inclusion", "banking for poor", "bank account poor", "banking access", "financial services"],
+      "response": "Financial inclusion initiatives help people access banking, savings, credit, insurance, pension and digital financial services."
+    },
+    {
+      "intent": "housing_general",
+      "version": "v1",
+      "priority": 90,
+      "keywords": ["house", "home", "housing", "home scheme", "housing assistance", "government housing"],
+      "response": "Government housing support is primarily provided through PMAY and related housing and infrastructure programs."
+    },
+    {
+      "intent": "sanitation",
+      "version": "v1",
+      "priority": 91,
+      "keywords": ["swachh bharat", "swachh bharat mission", "toilet", "sanitation", "clean india", "open defecation", "sbm"],
+      "response": "Swachh Bharat Mission focuses on sanitation, cleanliness, solid and liquid waste management and eliminating open defecation."
+    },
+    {
+      "intent": "jal_jeevan_mission",
+      "version": "v1",
+      "priority": 92,
+      "keywords": ["jal jeevan mission", "jjm", "tap water", "water connection", "drinking water", "har ghar jal", "household tap"],
+      "response": "Jal Jeevan Mission aims to provide functional household tap water connections and improve rural drinking water services."
+    },
+    {
+      "intent": "amrut",
+      "version": "v1",
+      "priority": 93,
+      "keywords": ["amrut", "amrut mission", "urban water", "urban infrastructure", "urban water supply", "sewerage"],
+      "response": "AMRUT supports urban infrastructure such as water supply, sewerage, drainage and green spaces in participating cities."
+    },
+    {
+      "intent": "smart_cities",
+      "version": "v1",
+      "priority": 94,
+      "keywords": ["smart cities", "smart city mission", "smart city", "urban development", "city development"],
+      "response": "The Smart Cities Mission promotes sustainable and technology-enabled urban development through selected city projects."
+    },
+    {
+      "intent": "electricity_general",
+      "version": "v1",
+      "priority": 100,
+      "keywords": ["electricity", "power", "electric connection", "bijli", "electricity scheme", "power connection"],
+      "response": "Government electricity initiatives support household electrification, distribution infrastructure, renewable energy and energy efficiency."
+    },
+    {
+      "intent": "saubhagya",
+      "version": "v1",
+      "priority": 101,
+      "keywords": ["saubhagya", "saubhagya scheme", "electricity connection", "household electrification", "bijli connection"],
+      "response": "Saubhagya was launched to facilitate electricity connections for willing unelectrified households, with emphasis on universal household electrification."
+    },
+    {
+      "intent": "renewable_energy",
+      "version": "v1",
+      "priority": 102,
+      "keywords": ["renewable energy", "solar energy", "solar scheme", "clean energy", "green energy", "renewable"],
+      "response": "Government renewable-energy programs promote solar, wind and other clean-energy technologies for households, agriculture, businesses and infrastructure."
+    },
+    {
+      "intent": "rooftop_solar",
+      "version": "v1",
+      "priority": 103,
+      "keywords": ["rooftop solar", "solar rooftop", "pm surya ghar", "surya ghar", "home solar", "solar panels home"],
+      "response": "PM Surya Ghar: Muft Bijli Yojana promotes rooftop solar installations for eligible residential electricity consumers."
+    },
+    {
+      "intent": "lpg_general",
+      "version": "v1",
+      "priority": 104,
+      "keywords": ["lpg", "cooking gas", "gas cylinder", "gas subsidy", "domestic gas", "cylinder"],
+      "response": "Government LPG initiatives include support for clean cooking fuel access and eligible LPG consumers through various programs."
+    },
+    {
+      "intent": "food_security",
+      "version": "v1",
+      "priority": 110,
+      "keywords": ["food security", "ration", "ration card", "free ration", "food grains", "public distribution", "pds"],
+      "response": "Food security programs provide eligible households access to subsidized or free food grains through the public distribution system and related measures."
+    },
+    {
+      "intent": "one_nation_one_ration_card",
+      "version": "v1",
+      "priority": 111,
+      "keywords": ["one nation one ration card", "onorc", "one ration card", "ration portability", "ration anywhere", "portable ration"],
+      "response": "One Nation One Ration Card enables eligible ration-card beneficiaries to access their entitled food grains through portability across participating locations."
+    },
+    {
+      "intent": "ration_card",
+      "version": "v1",
+      "priority": 112,
+      "keywords": ["ration card", "ration", "food card", "pds card", "government ration"],
+      "response": "A ration card is used by eligible households to access benefits under the public distribution system according to applicable state and national rules."
+    },
+    {
+      "intent": "labour_general",
+      "version": "v1",
+      "priority": 120,
+      "keywords": ["labour", "worker", "workers", "labour welfare", "worker welfare", "unorganised worker"],
+      "response": "Government worker welfare programs cover employment, social security, insurance, pensions, skills and financial assistance for eligible workers."
+    },
+    {
+      "intent": "e_shram",
+      "version": "v1",
+      "priority": 121,
+      "keywords": ["e shram", "e-shram", "eshram", "unorganised worker", "unorganized worker", "labour card", "worker card"],
+      "response": "The e-Shram platform creates a national database of unorganised workers to facilitate delivery of social security and welfare services."
+    },
+    {
+      "intent": "pm_shram_yogi_maandhan",
+      "version": "v1",
+      "priority": 122,
+      "keywords": ["pm shram yogi", "shram yogi mandhan", "pm sym", "unorganised pension", "worker pension", "labour pension"],
+      "response": "PM-SYM is a contributory pension scheme for eligible unorganised workers, subject to its age, income and other conditions."
+    },
+    {
+      "intent": "construction_worker",
+      "version": "v1",
+      "priority": 123,
+      "keywords": ["construction worker", "building worker", "bocw", "construction labour", "construction labourer"],
+      "response": "Construction workers may receive welfare benefits through state Building and Other Construction Workers welfare boards, subject to registration and eligibility."
+    },
+    {
+      "intent": "minority_welfare",
+      "version": "v1",
+      "priority": 130,
+      "keywords": ["minority", "minority welfare", "minority scholarship", "minority scheme", "minority student"],
+      "response": "Government minority welfare programs support education, skills, livelihoods and socio-economic development of eligible minority communities."
+    },
+    {
+      "intent": "sc_welfare",
+      "version": "v1",
+      "priority": 131,
+      "keywords": ["sc", "scheduled caste", "dalit", "sc welfare", "scheduled caste scheme", "sc scholarship"],
+      "response": "Government programs for Scheduled Castes include scholarships, education support, entrepreneurship, housing, livelihoods and social welfare assistance."
+    },
+    {
+      "intent": "st_welfare",
+      "version": "v1",
+      "priority": 132,
+      "keywords": ["st", "scheduled tribe", "tribal", "tribal welfare", "tribal scheme", "st scholarship"],
+      "response": "Government tribal welfare programs support education, livelihoods, healthcare, infrastructure and socio-economic development of eligible Scheduled Tribes."
+    },
+    {
+      "intent": "obc_welfare",
+      "version": "v1",
+      "priority": 133,
+      "keywords": ["obc", "other backward class", "obc welfare", "obc scholarship", "backward class"],
+      "response": "Government programs for OBC communities include education, scholarships, skill development, entrepreneurship and financial assistance initiatives."
+    },
+    {
+      "intent": "senior_citizen",
+      "version": "v1",
+      "priority": 134,
+      "keywords": ["senior citizen", "senior citizens", "elderly", "old people", "aged person", "elder welfare"],
+      "response": "Government senior-citizen initiatives include pension support, healthcare, social assistance and other welfare services for eligible elderly persons."
+    },
+    {
+      "intent": "disability_welfare",
+      "version": "v1",
+      "priority": 135,
+      "keywords": ["disability", "disabled", "divyang", "persons with disabilities", "pwd", "disability welfare"],
+      "response": "Government disability welfare programs support accessibility, education, employment, assistive devices, social security and empowerment."
+    },
+    {
+      "intent": "startup_general",
+      "version": "v1",
+      "priority": 140,
+      "keywords": ["startup", "start-up", "new business", "entrepreneur", "entrepreneurship", "business idea"],
+      "response": "Government startup and entrepreneurship programs provide support through recognition, finance, mentoring, skills, incubation and market access."
+    },
+    {
+      "intent": "business_general",
+      "version": "v1",
+      "priority": 141,
+      "keywords": ["business", "company", "enterprise", "business scheme", "business support", "business loan"],
+      "response": "Government business-support programs include MSME finance, MUDRA, credit guarantees, entrepreneurship and market-access initiatives."
+    },
+    {
+      "intent": "export_promotion",
+      "version": "v1",
+      "priority": 142,
+      "keywords": ["export", "exports", "export scheme", "international business", "export support", "export promotion"],
+      "response": "Government export-promotion initiatives support eligible businesses through trade facilitation, market access, finance and export-related services."
+    },
+    {
+      "intent": "digital_india",
+      "version": "v1",
+      "priority": 150,
+      "keywords": ["digital india", "digital government", "digital services", "online government services", "digital india mission"],
+      "response": "Digital India promotes digital infrastructure, online government services, digital literacy and technology-enabled public services."
+    },
+    {
+      "intent": "digilocker",
+      "version": "v1",
+      "priority": 151,
+      "keywords": ["digilocker", "digital locker", "digital documents", "online documents", "government documents"],
+      "response": "DigiLocker provides citizens with a digital platform to access, store and share eligible digital documents and certificates."
+    },
+    {
+      "intent": "umang",
+      "version": "v1",
+      "priority": 152,
+      "keywords": ["umang", "umang app", "government app", "online government services app"],
+      "response": "UMANG provides access to a range of government services through a unified digital platform."
+    },
+    {
+      "intent": "aadhaar",
+      "version": "v1",
+      "priority": 153,
+      "keywords": ["aadhaar", "aadhar", "uidai", "aadhaar card", "unique identity", "aadhaar update"],
+      "response": "Aadhaar is a unique identity system administered by UIDAI and is used for identity verification and access to various services, subject to applicable rules."
+    },
+    {
+      "intent": "pan_card",
+      "version": "v1",
+      "priority": 154,
+      "keywords": ["pan", "pan card", "permanent account number", "income tax pan", "pan application"],
+      "response": "PAN is a Permanent Account Number used for tax and certain financial and regulatory transactions in India."
+    },
+    {
+      "intent": "income_tax",
+      "version": "v1",
+      "priority": 155,
+      "keywords": ["income tax", "income tax scheme", "tax", "itr", "income tax return", "taxpayer"],
+      "response": "Income-tax services include PAN, income-tax returns, tax payments, refunds and other taxpayer services administered under applicable tax laws."
+    },
+    {
+      "intent": "gst",
+      "version": "v1",
+      "priority": 156,
+      "keywords": ["gst", "goods and services tax", "gst registration", "gst number", "gst return", "gst scheme"],
+      "response": "GST is India's indirect tax system covering the supply of goods and services, with registration and compliance requirements based on applicable rules."
+    },
+    {
+      "intent": "digital_payments",
+      "version": "v1",
+      "priority": 157,
+      "keywords": ["upi", "digital payment", "online payment", "bharat qr", "digital transaction", "cashless"],
+      "response": "Government-supported digital payment initiatives promote secure electronic transactions through systems such as UPI and other digital payment infrastructure."
+    },
+    {
+      "intent": "transport_general",
+      "version": "v1",
+      "priority": 160,
+      "keywords": ["transport", "transportation", "road transport", "vehicle scheme", "public transport"],
+      "response": "Government transport initiatives cover road connectivity, public transportation, vehicle modernization, highways and sustainable mobility."
+    },
+    {
+      "intent": "electric_vehicle",
+      "version": "v1",
+      "priority": 161,
+      "keywords": ["electric vehicle", "ev", "electric car", "electric scooter", "electric bike", "ev subsidy", "electric mobility"],
+      "response": "Government electric-mobility programs support adoption of electric vehicles and charging infrastructure subject to applicable policies and eligibility."
+    },
+    {
+      "intent": "national_highways",
+      "version": "v1",
+      "priority": 162,
+      "keywords": ["national highway", "highway scheme", "highways", "road infrastructure", "expressway"],
+      "response": "Government highway programs support development, expansion, maintenance and modernization of national road infrastructure."
+    },
+    {
+      "intent": "railway_general",
+      "version": "v1",
+      "priority": 163,
+      "keywords": ["railway", "railways", "train scheme", "railway development", "indian railways"],
+      "response": "Government railway programs support railway infrastructure, passenger services, modernization, safety and connectivity."
+    },
+    {
+      "intent": "tourism",
+      "version": "v1",
+      "priority": 170,
+      "keywords": ["tourism", "tourist", "tourism scheme", "travel industry", "tourism development", "heritage tourism"],
+      "response": "Government tourism initiatives support destination development, infrastructure, promotion, heritage and tourism-related employment."
+    },
+    {
+      "intent": "environment",
+      "version": "v1",
+      "priority": 171,
+      "keywords": ["environment", "environmental scheme", "pollution", "climate", "green scheme", "environment protection"],
+      "response": "Government environmental initiatives address pollution control, biodiversity, conservation, climate action, waste management and sustainable development."
+    },
+    {
+      "intent": "waste_management",
+      "version": "v1",
+      "priority": 172,
+      "keywords": ["waste management", "garbage", "solid waste", "waste", "recycling", "plastic waste", "waste disposal"],
+      "response": "Government waste-management initiatives promote collection, segregation, processing, recycling and scientific disposal of waste."
+    },
+    {
+      "intent": "clean_energy",
+      "version": "v1",
+      "priority": 173,
+      "keywords": ["clean energy", "green energy", "carbon", "climate change", "energy efficiency"],
+      "response": "Government clean-energy initiatives promote renewable energy, energy efficiency, lower emissions and sustainable development."
+    },
+    {
+      "intent": "manufacturing",
+      "version": "v1",
+      "priority": 180,
+      "keywords": ["manufacturing", "manufacture", "factory", "industry", "industrial scheme", "production"],
+      "response": "Government industrial programs support manufacturing, investment, technology, infrastructure, employment and competitiveness."
+    },
+    {
+      "intent": "make_in_india",
+      "version": "v1",
+      "priority": 181,
+      "keywords": ["make in india", "makeinindia", "manufacturing india", "made in india", "manufacture in india"],
+      "response": "Make in India promotes investment, manufacturing, innovation, infrastructure and job creation in India."
+    },
+    {
+      "intent": "production_linked_incentive",
+      "version": "v1",
+      "priority": 182,
+      "keywords": ["pli", "production linked incentive", "production linked", "manufacturing incentive", "pli scheme"],
+      "response": "Production Linked Incentive (PLI) schemes provide incentives to eligible manufacturers in selected sectors based on specified performance and investment conditions."
+    },
+    {
+      "intent": "food_processing",
+      "version": "v1",
+      "priority": 183,
+      "keywords": ["food processing", "food processing industry", "food business", "food processing scheme", "agro processing"],
+      "response": "Government food-processing programs support infrastructure, processing capacity, value addition, entrepreneurship and market access."
+    },
+    {
+      "intent": "textile",
+      "version": "v1",
+      "priority": 184,
+      "keywords": ["textile", "textiles", "garment", "clothing industry", "textile scheme", "handloom"],
+      "response": "Government textile initiatives support handloom, handicrafts, apparel, technical textiles, infrastructure, skills and industry development."
+    },
+    {
+      "intent": "handloom",
+      "version": "v1",
+      "priority": 185,
+      "keywords": ["handloom", "weaver", "weavers", "handloom scheme", "weaving", "loom"],
+      "response": "Government handloom programs support weavers through skills, technology, credit, infrastructure, marketing and welfare initiatives."
+    },
+    {
+      "intent": "handicraft",
+      "version": "v1",
+      "priority": 186,
+      "keywords": ["handicraft", "handicrafts", "craft", "craftsman", "artisan scheme", "handmade"],
+      "response": "Government handicraft programs support artisans through skill development, design, technology, credit, marketing and market access."
+    },
+    {
+      "intent": "rural_entrepreneurship",
+      "version": "v1",
+      "priority": 187,
+      "keywords": ["rural entrepreneur", "rural business", "village business", "rural startup", "village entrepreneur"],
+      "response": "Rural entrepreneurship programs support self-employment, micro-enterprises, skills, finance and livelihood opportunities in rural areas."
+    },
+    {
+      "intent": "self_help_group",
+      "version": "v1",
+      "priority": 188,
+      "keywords": ["self help group", "shg", "women shg", "self-help group", "group loan", "women group"],
+      "response": "Self Help Groups can access government-supported livelihood, financial inclusion, skill and entrepreneurship programs, subject to applicable eligibility."
+    },
+    {
+      "intent": "financial_literacy",
+      "version": "v1",
+      "priority": 189,
+      "keywords": ["financial literacy", "money management", "financial education", "banking literacy", "financial awareness"],
+      "response": "Government financial-literacy initiatives promote awareness of savings, banking, credit, insurance, pensions and responsible financial practices."
+    },
+    {
+      "intent": "postal_savings",
+      "version": "v1",
+      "priority": 190,
+      "keywords": ["post office scheme", "post office savings", "postal savings", "post office account", "small savings"],
+      "response": "India Post offers government-backed savings and financial products, subject to applicable rules, rates and eligibility."
+    },
+    {
+      "intent": "ppf",
+      "version": "v1",
+      "priority": 191,
+      "keywords": ["ppf", "public provident fund", "provident fund", "long term savings", "ppf account"],
+      "response": "Public Provident Fund (PPF) is a government-backed long-term savings scheme with specified rules for deposits, interest, maturity and withdrawals."
+    },
+    {
+      "intent": "national_savings_certificate",
+      "version": "v1",
+      "priority": 192,
+      "keywords": ["nsc", "national savings certificate", "savings certificate", "post office nsc"],
+      "response": "National Savings Certificate (NSC) is a government-backed small-savings product available through designated channels under applicable rules."
+    },
+    {
+      "intent": "senior_citizen_savings",
+      "version": "v1",
+      "priority": 193,
+      "keywords": ["scss", "senior citizen savings scheme", "senior savings", "elderly savings"],
+      "response": "Senior Citizens' Savings Scheme (SCSS) is a government-backed savings product designed for eligible senior citizens under applicable rules."
+    },
+    {
+      "intent": "sukanya_savings",
+      "version": "v1",
+      "priority": 194,
+      "keywords": ["daughter account", "daughter savings", "girl child account", "sukanya account"],
+      "response": "Sukanya Samriddhi Account provides a government-backed savings option intended for the long-term financial needs of an eligible girl child."
+    },
+    {
+      "intent": "education_loan",
+      "version": "v1",
+      "priority": 200,
+      "keywords": ["education loan", "student loan", "college loan", "study loan", "higher education loan"],
+      "response": "Eligible students can access education-loan programs through banks and government-supported initiatives, subject to lender and scheme conditions."
+    },
+    {
+      "intent": "education_financial_support",
+      "version": "v1",
+      "priority": 201,
+      "keywords": ["student financial support", "college financial aid", "education financial assistance", "study assistance"],
+      "response": "Government education support may include scholarships, fee assistance, interest support and other student-focused financial programs."
+    },
+    {
+      "intent": "research_fellowship",
+      "version": "v1",
+      "priority": 202,
+      "keywords": ["research fellowship", "fellowship", "phd scholarship", "research scholarship", "research student"],
+      "response": "Government research and fellowship programs provide financial and academic support to eligible researchers and students under specific scheme rules."
+    },
+    {
+      "intent": "women_safety",
+      "version": "v1",
+      "priority": 210,
+      "keywords": ["women safety", "women security", "female safety", "women protection", "safety scheme"],
+      "response": "Government women-safety initiatives support prevention, protection, emergency response, legal assistance and institutional support for women."
+    },
+    {
+      "intent": "child_welfare",
+      "version": "v1",
+      "priority": 211,
+      "keywords": ["child welfare", "children scheme", "child protection", "child development", "child support"],
+      "response": "Government child-welfare programs support nutrition, health, education, protection and development of children."
+    },
+    {
+      "intent": "anganwadi",
+      "version": "v1",
+      "priority": 212,
+      "keywords": ["anganwadi", "anganwadi worker", "anganwadi centre", "icds", "child nutrition centre"],
+      "response": "Anganwadi services provide early childhood care, nutrition, health-related services and support to eligible children and women."
+    },
+    {
+      "intent": "poshan",
+      "version": "v1",
+      "priority": 213,
+      "keywords": ["poshan", "poshan abhiyan", "nutrition", "malnutrition", "child nutrition", "women nutrition"],
+      "response": "POSHAN initiatives focus on improving nutrition outcomes for children, pregnant women and lactating mothers."
+    },
+    {
+      "intent": "maternity_benefit",
+      "version": "v1",
+      "priority": 214,
+      "keywords": ["pm matru vandana", "pmmvy", "maternity benefit", "pregnancy benefit", "maternity assistance"],
+      "response": "Pradhan Mantri Matru Vandana Yojana provides maternity-related financial support to eligible beneficiaries subject to scheme conditions."
+    },
+    {
+      "intent": "rural_drinking_water",
+      "version": "v1",
+      "priority": 220,
+      "keywords": ["rural drinking water", "village water", "tap water village", "drinking water village"],
+      "response": "Government rural drinking-water programs aim to improve access to safe and reliable drinking water, especially through household tap connections."
+    },
+    {
+      "intent": "urban_poverty",
+      "version": "v1",
+      "priority": 221,
+      "keywords": ["urban poverty", "urban poor", "city poor", "urban livelihood", "urban self employment"],
+      "response": "Urban livelihood programs support skill development, self-employment, street vendors and other livelihood opportunities for eligible urban poor households."
+    },
+    {
+      "intent": "street_vendor",
+      "version": "v1",
+      "priority": 222,
+      "keywords": ["street vendor", "street vending", "vendor loan", "hawker loan", "thela loan"],
+      "response": "PM SVANidhi supports eligible street vendors with working-capital loans and incentives linked to repayment and digital transactions under applicable rules."
+    },
+    {
+      "intent": "housing_loan",
+      "version": "v1",
+      "priority": 223,
+      "keywords": ["home loan", "housing loan", "house loan", "home loan subsidy", "housing finance"],
+      "response": "Eligible households may benefit from government housing-finance or interest-support initiatives depending on the applicable housing scheme and current rules."
+    },
+    {
+      "intent": "bank_loan_general",
+      "version": "v1",
+      "priority": 230,
+      "keywords": ["bank loan", "loan", "government loan", "loan scheme", "borrow money", "credit scheme"],
+      "response": "Government-supported credit programs include KCC for agriculture, MUDRA for micro enterprises, Stand-Up India and various MSME credit-guarantee initiatives."
+    },
+    {
+      "intent": "agriculture_loan",
+      "version": "v1",
+      "priority": 231,
+      "keywords": ["agriculture loan", "agri loan", "farmer loan", "crop loan", "farm credit", "agricultural credit"],
+      "response": "Farmers can access agricultural credit through instruments such as Kisan Credit Cards and eligible institutional agricultural loans."
+    },
+    {
+      "intent": "crop_diversification",
+      "version": "v1",
+      "priority": 232,
+      "keywords": ["crop diversification", "diversification", "alternative crops", "farm diversification"],
+      "response": "Government agriculture programs encourage diversification, productivity, sustainable practices and value addition depending on crop and state-specific programs."
+    },
+    {
+      "intent": "organic_farming",
+      "version": "v1",
+      "priority": 233,
+      "keywords": ["organic farming", "organic agriculture", "chemical free farming", "organic farmer", "organic crop"],
+      "response": "Government programs such as PKVY support organic farming, certification, capacity building and sustainable agricultural practices."
+    },
+    {
+      "intent": "natural_farming",
+      "version": "v1",
+      "priority": 234,
+      "keywords": ["natural farming", "natural agriculture", "zero budget farming", "chemical free agriculture"],
+      "response": "Government initiatives promote natural and sustainable farming practices through training, demonstrations and support programs."
+    },
+    {
+      "intent": "farmer_producer_organization",
+      "version": "v1",
+      "priority": 235,
+      "keywords": ["fpo", "farmer producer organization", "farmer producer organisation", "farmers group company", "producer organization"],
+      "response": "Farmer Producer Organizations (FPOs) help farmers improve aggregation, input procurement, market access, value addition and collective bargaining."
+    },
+    {
+      "intent": "agriculture_marketing",
+      "version": "v1",
+      "priority": 236,
+      "keywords": ["agriculture marketing", "farm marketing", "mandi", "agricultural mandi", "market price farmer", "sell crop"],
+      "response": "Government agricultural-marketing initiatives aim to improve market access, transparency, price discovery, storage and value realization for farmers."
+    },
+    {
+      "intent": "warehousing",
+      "version": "v1",
+      "priority": 237,
+      "keywords": ["warehouse", "warehousing", "farm storage", "crop storage", "cold storage", "agriculture storage"],
+      "response": "Government-supported agricultural infrastructure programs promote warehouses, cold storage, logistics and post-harvest facilities."
+    },
+    {
+      "intent": "cold_chain",
+      "version": "v1",
+      "priority": 238,
+      "keywords": ["cold chain", "cold storage", "refrigerated storage", "food cold chain", "perishable storage"],
+      "response": "Cold-chain programs support storage, transportation and preservation infrastructure for perishable agricultural and food products."
+    },
+    {
+      "intent": "dairy",
+      "version": "v1",
+      "priority": 239,
+      "keywords": ["dairy", "dairy farming", "milk", "milk production", "dairy farmer", "milk scheme"],
+      "response": "Government dairy initiatives support milk production, animal productivity, dairy infrastructure, processing and farmer livelihoods."
+    },
+    {
+      "intent": "goat_farming",
+      "version": "v1",
+      "priority": 240,
+      "keywords": ["goat farming", "goat farmer", "goat scheme", "bakri palan", "goat loan"],
+      "response": "Eligible livestock farmers may receive support through animal-husbandry, livestock development, credit and entrepreneurship programs."
+    },
+    {
+      "intent": "poultry",
+      "version": "v1",
+      "priority": 241,
+      "keywords": ["poultry", "poultry farming", "chicken farming", "poultry scheme", "poultry loan"],
+      "response": "Government livestock and entrepreneurship programs can support eligible poultry farmers through infrastructure, credit, skills and development initiatives."
+    },
+    {
+      "intent": "beekeeping",
+      "version": "v1",
+      "priority": 242,
+      "keywords": ["beekeeping", "bee farming", "honey", "honey farming", "madhumakhi palan", "apiculture"],
+      "response": "Government programs support beekeeping and honey production through training, equipment, infrastructure and entrepreneurship initiatives."
+    },
+    {
+      "intent": "sericulture",
+      "version": "v1",
+      "priority": 243,
+      "keywords": ["sericulture", "silk farming", "silkworm", "silk farmer", "silk scheme"],
+      "response": "Government sericulture programs support silkworm rearing, silk production, technology, skills and livelihoods."
+    },
+    {
+      "intent": "fisheries_credit",
+      "version": "v1",
+      "priority": 244,
+      "keywords": ["fish loan", "fisheries loan", "fisherman loan", "fish farming loan", "fisheries credit"],
+      "response": "Eligible fishers and fisheries enterprises may access credit and infrastructure support through government fisheries programs and institutional finance."
+    },
+    {
+      "intent": "solar_farmer",
+      "version": "v1",
+      "priority": 245,
+      "keywords": ["farmer solar pump", "solar pump farmer", "solar pump subsidy", "agriculture solar pump"],
+      "response": "PM-KUSUM supports solarization of agricultural pumps and decentralized solar power for eligible beneficiaries under applicable components and conditions."
+    },
+    {
+      "intent": "women_self_employment",
+      "version": "v1",
+      "priority": 250,
+      "keywords": ["women self employment", "women self-employment", "women livelihood", "women business support"],
+      "response": "Government women-focused livelihood programs support self-employment, entrepreneurship, skills, credit and collective enterprises."
+    },
+    {
+      "intent": "rural_women",
+      "version": "v1",
+      "priority": 251,
+      "keywords": ["rural women", "village women", "rural woman", "women rural development"],
+      "response": "Programs such as DAY-NRLM support rural women through Self Help Groups, financial inclusion, skills, livelihoods and entrepreneurship."
+    },
+    {
+      "intent": "girl_education",
+      "version": "v1",
+      "priority": 252,
+      "keywords": ["girl education", "girls education", "education for girls", "daughter education", "girl student"],
+      "response": "Government initiatives promote girls' education through scholarships, school access, financial support and programs such as Beti Bachao Beti Padhao."
+    },
+    {
+      "intent": "minority_education",
+      "version": "v1",
+      "priority": 253,
+      "keywords": ["minority education", "minority student", "minority scholarship", "minority school"],
+      "response": "Eligible minority students may receive support through government scholarship and educational-development programs."
+    },
+    {
+      "intent": "tribal_education",
+      "version": "v1",
+      "priority": 254,
+      "keywords": ["tribal education", "tribal student", "tribal scholarship", "tribal school", "st student"],
+      "response": "Government tribal education programs support eligible Scheduled Tribe students through scholarships, residential education and other educational assistance."
+    },
+    {
+      "intent": "sc_education",
+      "version": "v1",
+      "priority": 255,
+      "keywords": ["sc education", "sc student", "sc scholarship", "scheduled caste student", "dalit scholarship"],
+      "response": "Government programs provide education and scholarship support to eligible Scheduled Caste students."
+    },
+    {
+      "intent": "obc_education",
+      "version": "v1",
+      "priority": 256,
+      "keywords": ["obc education", "obc student", "obc scholarship", "backward class scholarship"],
+      "response": "Eligible OBC students can access government scholarship and educational-support programs subject to applicable criteria."
+    },
+    {
+      "intent": "housing_poor",
+      "version": "v1",
+      "priority": 260,
+      "keywords": ["poor people house", "poor family house", "house for poor", "free house", "housing poor"],
+      "response": "Housing support for eligible economically vulnerable households is provided through government housing programs such as PMAY and related initiatives."
+    },
+    {
+      "intent": "toilet_assistance",
+      "version": "v1",
+      "priority": 261,
+      "keywords": ["toilet assistance", "toilet subsidy", "toilet construction", "household toilet", "toilet scheme"],
+      "response": "Sanitation programs provide support for improving household sanitation and toilet access for eligible beneficiaries."
+    },
+    {
+      "intent": "water_conservation",
+      "version": "v1",
+      "priority": 262,
+      "keywords": ["water conservation", "save water", "water harvesting", "rainwater harvesting", "watershed"],
+      "response": "Government water-conservation programs support rainwater harvesting, watershed development, irrigation efficiency and sustainable water management."
+    },
+    {
+      "intent": "rural_electricity",
+      "version": "v1",
+      "priority": 263,
+      "keywords": ["village electricity", "rural electricity", "rural electrification", "village power", "rural power"],
+      "response": "Government rural electrification initiatives focus on reliable electricity access and strengthening rural power infrastructure."
+    },
+    {
+      "intent": "banking_general",
+      "version": "v1",
+      "priority": 270,
+      "keywords": ["banking", "bank account", "bank scheme", "government bank", "bank benefits"],
+      "response": "Government financial-inclusion programs help eligible citizens access bank accounts, credit, insurance, pensions and digital financial services."
+    },
+    {
+      "intent": "insurance_general",
+      "version": "v1",
+      "priority": 271,
+      "keywords": ["insurance", "government insurance", "insurance scheme", "life insurance", "accident insurance"],
+      "response": "Major government-supported insurance programs include PMJJBY for life insurance, PMSBY for accident insurance and PMFBY for crop insurance."
+    },
+    {
+      "intent": "pension_general",
+      "version": "v1",
+      "priority": 272,
+      "keywords": ["pension", "government pension", "pension scheme", "monthly pension", "retirement support"],
+      "response": "Government pension initiatives include Atal Pension Yojana, NPS and social-security pensions for eligible vulnerable groups."
+    },
+    {
+      "intent": "government_scheme_general",
+      "version": "v1",
+      "priority": 900,
+      "keywords": ["government scheme", "govt scheme", "government yojana", "yojana", "scheme", "sarkari yojana", "sarkari scheme", "india scheme"],
+      "response": "Government schemes cover agriculture, health, education, housing, employment, financial inclusion, women and child welfare, entrepreneurship, social security and rural development."
+    },
+    {
+      "intent": "scheme_application_general",
+      "version": "v1",
+      "priority": 901,
+      "keywords": ["how to apply scheme", "scheme application", "apply government scheme", "apply yojana", "scheme registration", "government scheme registration"],
+      "response": "Application procedures differ by scheme. Eligibility, documents, registration method and application portals depend on the specific government scheme."
+    },
+    {
+      "intent": "scheme_eligibility_general",
+      "version": "v1",
+      "priority": 902,
+      "keywords": ["scheme eligibility", "eligible for scheme", "who can apply", "eligibility", "scheme criteria", "government scheme eligibility"],
+      "response": "Eligibility varies by government scheme and may depend on factors such as income, occupation, age, location, social category, landholding or other scheme-specific criteria."
+    },
+    {
+      "intent": "scheme_documents_general",
+      "version": "v1",
+      "priority": 903,
+      "keywords": ["scheme documents", "documents required", "documents for scheme", "required documents", "scheme paperwork", "what documents"],
+      "response": "Required documents vary by scheme but may include identity proof, address proof, bank details, income or category certificates and scheme-specific documents."
+    },
+    {
+      "intent": "scheme_status_general",
+      "version": "v1",
+      "priority": 904,
+      "keywords": ["scheme status", "application status", "check scheme status", "beneficiary status", "payment status", "application tracking"],
+      "response": "Scheme application or beneficiary status can generally be checked through the official portal or department responsible for the specific scheme."
+    },
+    {
+      "intent": "scheme_benefits_general",
+      "version": "v1",
+      "priority": 905,
+      "keywords": ["scheme benefits", "benefits of scheme", "what benefit", "scheme advantage", "yojana benefits"],
+      "response": "Government scheme benefits depend on the specific program and may include financial assistance, insurance, loans, subsidies, services, training or infrastructure support."
+    },
+    {
+      "intent": "scheme_amount_general",
+      "version": "v1",
+      "priority": 906,
+      "keywords": ["scheme amount", "how much money", "financial benefit amount", "subsidy amount", "government scheme money"],
+      "response": "Financial benefits and subsidy amounts vary by scheme and may also depend on beneficiary category, location and applicable rules."
     }
   ]
 }
