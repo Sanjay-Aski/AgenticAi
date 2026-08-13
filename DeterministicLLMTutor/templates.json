@@ -1,0 +1,49 @@
+{
+  "dataset_name": "GovSchemesTutor",
+  "dataset_version": "1.0.0",
+  "default_response": "Sorry, this is not present in the dataset.",
+  "topics": [
+    {
+      "intent": "farmer_general",
+      "version": "v1",
+      "priority": 1,
+      "keywords": ["farmer", "kisan", "agriculture", "krishi"],
+      "response": "For farmers, key schemes include PM-KISAN (income support), KCC (credit), and PMFBY (crop insurance)."
+    },
+    {
+      "intent": "pm_kisan",
+      "version": "v1",
+      "priority": 2,
+      "keywords": ["pm kisan", "pm-kisan", "income support", "6000"],
+      "response": "PM-KISAN: Eligible farmer families receive Rs. 6000 per year in 3 equal installments."
+    },
+    {
+      "intent": "kisan_credit_card",
+      "version": "v1",
+      "priority": 3,
+      "keywords": ["kcc", "kisan credit card", "farm loan", "agri credit"],
+      "response": "Kisan Credit Card (KCC): Provides timely short-term credit for crop cultivation and allied activities."
+    },
+    {
+      "intent": "crop_insurance",
+      "version": "v1",
+      "priority": 4,
+      "keywords": ["pmfby", "crop insurance", "insurance", "fasal bima"],
+      "response": "PMFBY: Crop insurance scheme that protects farmers against crop loss due to natural risks."
+    },
+    {
+      "intent": "soil_health",
+      "version": "v1",
+      "priority": 5,
+      "keywords": ["soil", "soil health card", "nutrient"],
+      "response": "Soil Health Card Scheme: Provides soil nutrient status and recommendations for better productivity."
+    },
+    {
+      "intent": "irrigation",
+      "version": "v1",
+      "priority": 6,
+      "keywords": ["irrigation", "water", "pmksy", "per drop more crop"],
+      "response": "PMKSY: Supports irrigation expansion and efficient water use under 'Per Drop More Crop'."
+    }
+  ]
+}
